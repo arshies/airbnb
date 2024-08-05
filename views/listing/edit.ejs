@@ -1,0 +1,49 @@
+<% layout("/layout/boilerPlate") %>
+
+<body>
+    <h3>edit page</h3>
+    <div class="row">
+        <div class="col-8 mt-3 offset-2" >
+    <form method="post" action="/listing/<%= singleListing._id %>?_method=Put" novalidate class="needs-validation">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">title</label>
+            <input class="form-control" name = "listing[title]" value="<%=singleListing.title %>" type="text" required>
+            <div class="invalid-feedback">Please provide a valid title.</div> 
+        </div> 
+        <div class="mb-3">
+            <label for="description" class="form-label">description</label>
+            <textarea class="form-control" name = "listing[description]"  type="text" required><%=singleListing.description%></textarea>
+            <div class="invalid-feedback">Please provide a valid description.</div>  
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">image</label>
+            <input class="form-control" name = "listing[image]" value="<%=singleListing.image%>" type="text" required>
+            <div class="invalid-feedback">Please provide a valid image url.</div>  
+        </div>
+        <div class="row">
+            <div class="mb-3 col-4">
+                <label for="price" class="form-label">price</label>
+                <input class="form-control" name = "listing[price]" value="<%=singleListing.price%>" type="number" required> 
+                <div class="invalid-feedback">Please provide a valid price.</div> 
+            </div>
+            <div class="mb-3 col-8">
+                <label for="country" class="form-label">country</label>
+                <input class="form-control" name = "listing[country]" value="<%=singleListing.country%>" type="text" required> 
+                <div class="invalid-feedback">Please provide a valid country.</div> 
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="location" class="form-label">location</label>
+            <input class="form-control" name = "listing[location]" value="<%=singleListing.location%>" type="text" required>
+            <div class="invalid-feedback">Please provide a valid location.</div>  
+        </div>
+        
+        <button class="btn btn-dark">save edit</button>
+    </form>
+           
+</div>
+</div>
+        
+</body>

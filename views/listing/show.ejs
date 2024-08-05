@@ -1,0 +1,65 @@
+<% layout("/layout/boilerPlate") %>
+
+    <div class="row offset-2">
+        
+        
+    <div class="col-10 offset-2 mt-3" >    
+        <h3><b><%= singleListing.title %></b><br></h3>
+        <div class="card listing-card col-8 show-card">
+            <img src="<%= singleListing.image %>" class="card-img-top show-img" alt="<%= singleListing.image %>">
+            <div class="card-body">
+                <p class="card-text">
+                    
+                    <%= singleListing.description %> <br>
+                    &#8377 <%= singleListing.price.toLocaleString("en-in") %> <br>
+                    <%= singleListing.location %> <br>
+                    <%= singleListing.country %> <br>
+                </p>
+            </div>
+            <div class="bttn">
+                <form method="get" action="/listing/<%= singleListing._id %>/edit">
+                    <button class="btn btn-dark add-btn offset-2">edit</button><br>
+                </form>
+                <form method = "post" action="/listing/<%= singleListing._id %>?_method=Delete">
+                    <button class="btn btn-dark offset-4">delete</button>
+                </form>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="col-7 offset-2">
+        <h3>leave a review </h3>
+        <form method="post" action="/listing/<%= singleListing._id %>/review" novalidate class="needs-validation">
+            <div>
+                <label for="Rating" class="form-label">Rating</label>
+                <input class="form-range" type="range" min="1" max="5" id="Rating " name="review[rating]">
+            </div>
+            <div>
+                <label for="comment" class="form-label">comment</label>
+                <textarea class="form-control" name="review[comment]" id="comment" cols="30" rows="10" required>sample comment</textarea>
+                <div class="invalid-feedback">Please provide a valid description.</div>
+            </div>
+            <div class="mt-3 row offset-5">
+                <button class="btn btn-outline-dark col-3">submit</button>
+            </div>
+        </form>
+    
+        <hr>
+        <h4>all reviews</h4>
+        <div class="row">
+            <% for (review of singleListing.reviews) {%>
+                <div class="card col-5 ms-3 mb-3 ">
+                    <div class="card-body">
+                    <h5 class="card-title">User name</h5>
+                    <p class="card-text"><%= review.comment %></p>
+                    <p class="card-text"><%= review.rating %></p>
+                    </div>
+                    <form  method="post" action="/listing/<%= singleListing._id %>/review/<%= review._id %>?_method=DELETE">
+                        <button class="btn btn-dark mb-3">delete</button>
+                    </form>
+                </div>
+            <%}%>
+        </div>
+    </div>
+</div>
